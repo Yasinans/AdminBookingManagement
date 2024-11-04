@@ -6,7 +6,6 @@ namespace AdminBookingManagement
 {
     public partial class AdminForm : Form
     {
-        UserModel currentUser;
         public AdminForm()
         {
             this.MaximizeBox = false;
@@ -22,9 +21,9 @@ namespace AdminBookingManagement
 
         public void AuthenticateUser(UserModel user)
         {
-            currentUser = user;
+            AdminBookingManagement.CurrentUser = user;
             AdminTabControl.TabMenuVisible = true;
-            userLabel.Text = "Logged in as " + currentUser.Username;
+            userLabel.Text = "Logged in as " + AdminBookingManagement.CurrentUser.Username;
             userLabel.Show();
             DashboardForm.Show();
             LoginPanel.Hide();
@@ -42,7 +41,7 @@ namespace AdminBookingManagement
         }
         private void AdminTabControl_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (currentUser == null)
+            if (AdminBookingManagement.CurrentUser == null)
             {
                 AdminTabControl.SelectedIndex = 0;
                 return;
@@ -51,15 +50,23 @@ namespace AdminBookingManagement
             if (AdminTabControl.SelectedIndex == 0) {
                 DashboardForm.RefreshData();
             }
-            else if (AdminTabControl.SelectedIndex == 1){ 
-                facilityForm.RefreshData();
+            else if (AdminTabControl.SelectedIndex == 1)
+            {
+                BookingForm.RefreshData();
+            }
+            else if (AdminTabControl.SelectedIndex == 2){ 
+                FacilityForm.RefreshData();
+            }
+            else if (AdminTabControl.SelectedIndex == 4)
+            {
+                UserForm.RefreshData();
             }
         }
 
         private void LogoutButton_Click(object sender, System.EventArgs e)
         {
             ShowUnauthenticatedView();
-            this.currentUser = null;
+            AdminBookingManagement.CurrentUser = null;
         }
     }
 }

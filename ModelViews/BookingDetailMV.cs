@@ -65,7 +65,7 @@ namespace AdminBookingManagement.ModelViews
                         {
                             Id = reader.GetInt32(0),
                             Name = reader.GetString(1),
-                            VenueId = reader.GetInt32(2),
+                            Venue_Name = AdminBookingManagement.FacilityMV.GetFacilityById(reader.GetInt32(2)).FacilityName,
                             Department = reader.GetString(3),
                             Occupation = reader.GetString(4),
                             Purpose = reader.GetString(5),
@@ -88,8 +88,8 @@ namespace AdminBookingManagement.ModelViews
             FacilityMV facilityMV = AdminBookingManagement.FacilityMV;
             foreach (BookingDetailModel facility in AdminBookingManagement.BookingDetailMV.BookingDetails)
             {
-                if (BookingCountByFacility.ContainsKey(facilityMV.GetFacilityNameById(facility.VenueId))) BookingCountByFacility[facilityMV.GetFacilityNameById(facility.VenueId)] += 1;
-                else BookingCountByFacility[facilityMV.GetFacilityNameById(facility.VenueId)] = 1;
+                if (BookingCountByFacility.ContainsKey(facility.Venue_Name)) BookingCountByFacility[facility.Venue_Name] += 1;
+                else BookingCountByFacility[facility.Venue_Name] = 1;
             }
             return BookingCountByFacility;
         }

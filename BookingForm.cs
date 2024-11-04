@@ -18,24 +18,18 @@ namespace AdminBookingManagement
             InitializeComponent();
         }
 
-        public void Show()
+        public void RefreshData()
         {
-            base.Show();
-            RefreshData();
-        }
-
-        private void RefreshData()
-        {
-            //Facility - Change to unique value >:)
             facilitiesComboBox.Items.Clear();
             facilitiesComboBox.Items.Add("All Facilities");
             facilitiesComboBox.SelectedIndex = 0;
             facilitiesComboBox.Items.AddRange(AdminBookingManagement.FacilityMV.Facilities.Select(e=>e.FacilityName).ToArray());
             BookingsDataGridView.DataSource = null;
             BookingsDataGridView.DataSource = GetBookingDetailsByFilter();
+            BookingsDataGridView.ClearSelection();
         }
 
-        private void resetButton_Click(object sender, EventArgs e)
+        private void ResetButton_Click(object sender, EventArgs e)
         {
             statusComboBox.SelectedIndex = 0;
             facilitiesComboBox.SelectedIndex = 0;
@@ -52,18 +46,20 @@ namespace AdminBookingManagement
                 bool isAllStatus = statusComboBox.SelectedIndex == 0;
                 bool isAllFacility = facilitiesComboBox.SelectedIndex == 0;
                 if (!nameMatched) continue;
-                if (isAllStatus && bookingDetail.VenueId == facilitiesComboBox.SelectedIndex - 1)
+                if(isAllStatus && isAllFacility)
+                {
+                    filteredBookingDetails.Add(bookingDetail);
+                }
+                else if (isAllStatus && 
+                    bookingDetail.Venue_Name.Equals((string)facilitiesComboBox.SelectedItem))
                 {
                     filteredBookingDetails.Add(bookingDetail);
                 }
                 else if (isAllFacility && bookingDetail.Status.Equals(statusComboBox.SelectedItem.ToString()))
                 {
                     filteredBookingDetails.Add(bookingDetail);
-                } else if (bookingDetail.VenueId == facilitiesComboBox.SelectedIndex - 1 && bookingDetail.Status.Equals(statusComboBox.SelectedItem.ToString())) {
-                    filteredBookingDetails.Add(bookingDetail);
-                }
-                else if (isAllStatus && isAllFacility)
-                {
+                } else if (bookingDetail.Venue_Name.Equals((string)facilitiesComboBox.SelectedItem)
+                    && bookingDetail.Status.Equals(statusComboBox.SelectedItem.ToString())) {
                     filteredBookingDetails.Add(bookingDetail);
                 }
             }

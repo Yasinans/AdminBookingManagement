@@ -1,4 +1,5 @@
-﻿using AdminBookingManagement.ModelViews;
+﻿using AdminBookingManagement.Models;
+using AdminBookingManagement.ModelViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace AdminBookingManagement
         public static OptionMV OptionMV { get; set; } = new OptionMV();
         public static UserMV UserMV { get; set; } = new UserMV();
         public static AdminForm AdminForm { get; set; }
+        
+        public static UserModel CurrentUser { get; set; }
     }
 }

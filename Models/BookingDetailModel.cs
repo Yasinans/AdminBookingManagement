@@ -16,7 +16,7 @@ namespace AdminBookingManagement.Models
 
         public string Recurrence { get; set; }
         public string AdditionalDetails { get; set; }
-        public int VenueId { get; set; }
+        public string Venue_Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

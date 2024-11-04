@@ -36,6 +36,7 @@
             this.secondBookingPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.FacilitiesDataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.updateButton = new Guna.UI2.WinForms.Guna2Button();
             this.deleteButton = new Guna.UI2.WinForms.Guna2Button();
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
@@ -44,7 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.selectImageLabel = new System.Windows.Forms.Label();
-            this.ImagePreview = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.imagePreview = new Guna.UI2.WinForms.Guna2ImageButton();
             this.facilityNameInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.categoryNameInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.facilityLabel = new System.Windows.Forms.Label();
@@ -99,6 +100,7 @@
             this.FacilitiesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FacilitiesDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.FacilitiesDataGridView.Location = new System.Drawing.Point(10, 10);
+            this.FacilitiesDataGridView.MultiSelect = false;
             this.FacilitiesDataGridView.Name = "FacilitiesDataGridView";
             this.FacilitiesDataGridView.ReadOnly = true;
             this.FacilitiesDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -134,11 +136,13 @@
             this.FacilitiesDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.FacilitiesDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.FacilitiesDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.FacilitiesDataGridView.SelectionChanged += new System.EventHandler(this.DataGridView_SelectionChanged);
             // 
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2GradientPanel1.BorderRadius = 10;
+            this.guna2GradientPanel1.Controls.Add(this.errorLabel);
             this.guna2GradientPanel1.Controls.Add(this.updateButton);
             this.guna2GradientPanel1.Controls.Add(this.deleteButton);
             this.guna2GradientPanel1.Controls.Add(this.guna2VSeparator1);
@@ -147,7 +151,7 @@
             this.guna2GradientPanel1.Controls.Add(this.label2);
             this.guna2GradientPanel1.Controls.Add(this.label1);
             this.guna2GradientPanel1.Controls.Add(this.selectImageLabel);
-            this.guna2GradientPanel1.Controls.Add(this.ImagePreview);
+            this.guna2GradientPanel1.Controls.Add(this.imagePreview);
             this.guna2GradientPanel1.Controls.Add(this.facilityNameInput);
             this.guna2GradientPanel1.Controls.Add(this.categoryNameInput);
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(232)))));
@@ -158,6 +162,19 @@
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(812, 91);
             this.guna2GradientPanel1.TabIndex = 5;
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.BackColor = System.Drawing.Color.Transparent;
+            this.errorLabel.Font = new System.Drawing.Font("Plus Jakarta Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.ForeColor = System.Drawing.Color.Brown;
+            this.errorLabel.Location = new System.Drawing.Point(35, 67);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(193, 18);
+            this.errorLabel.TabIndex = 15;
+            this.errorLabel.Text = "Facility with this name already exist!";
+            this.errorLabel.Visible = false;
             // 
             // updateButton
             // 
@@ -176,6 +193,7 @@
             this.updateButton.Size = new System.Drawing.Size(122, 27);
             this.updateButton.TabIndex = 14;
             this.updateButton.Text = "Update Selected";
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // deleteButton
             // 
@@ -194,6 +212,7 @@
             this.deleteButton.Size = new System.Drawing.Size(122, 27);
             this.deleteButton.TabIndex = 13;
             this.deleteButton.Text = "Delete Selected";
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // guna2VSeparator1
             // 
@@ -213,6 +232,7 @@
             this.addButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.addButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.addButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.addButton.Enabled = false;
             this.addButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.addButton.ForeColor = System.Drawing.Color.White;
             this.addButton.IndicateFocus = true;
@@ -221,6 +241,7 @@
             this.addButton.Size = new System.Drawing.Size(75, 59);
             this.addButton.TabIndex = 11;
             this.addButton.Text = "Add";
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // chooseButton
             // 
@@ -239,6 +260,7 @@
             this.chooseButton.Size = new System.Drawing.Size(93, 27);
             this.chooseButton.TabIndex = 10;
             this.chooseButton.Text = "Choose";
+            this.chooseButton.Click += new System.EventHandler(this.ChooseButton_Click);
             // 
             // label2
             // 
@@ -279,22 +301,22 @@
             this.selectImageLabel.Text = "Select Image:";
             this.selectImageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ImagePreview
+            // imagePreview
             // 
-            this.ImagePreview.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ImagePreview.BackColor = System.Drawing.Color.DimGray;
-            this.ImagePreview.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.ImagePreview.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.ImagePreview.Image = ((System.Drawing.Image)(resources.GetObject("ImagePreview.Image")));
-            this.ImagePreview.ImageOffset = new System.Drawing.Point(0, 0);
-            this.ImagePreview.ImageRotate = 0F;
-            this.ImagePreview.IndicateFocus = true;
-            this.ImagePreview.Location = new System.Drawing.Point(469, 17);
-            this.ImagePreview.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.ImagePreview.Name = "ImagePreview";
-            this.ImagePreview.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.ImagePreview.Size = new System.Drawing.Size(84, 58);
-            this.ImagePreview.TabIndex = 4;
+            this.imagePreview.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.imagePreview.BackColor = System.Drawing.Color.DimGray;
+            this.imagePreview.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.imagePreview.HoverState.ImageSize = new System.Drawing.Size(64, 64);
+            this.imagePreview.Image = ((System.Drawing.Image)(resources.GetObject("imagePreview.Image")));
+            this.imagePreview.ImageOffset = new System.Drawing.Point(0, 0);
+            this.imagePreview.ImageRotate = 0F;
+            this.imagePreview.IndicateFocus = true;
+            this.imagePreview.Location = new System.Drawing.Point(469, 17);
+            this.imagePreview.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.imagePreview.Name = "imagePreview";
+            this.imagePreview.PressedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.imagePreview.Size = new System.Drawing.Size(84, 58);
+            this.imagePreview.TabIndex = 4;
             // 
             // facilityNameInput
             // 
@@ -319,11 +341,13 @@
             this.facilityNameInput.SelectedText = "";
             this.facilityNameInput.Size = new System.Drawing.Size(162, 29);
             this.facilityNameInput.TabIndex = 6;
+            this.facilityNameInput.TextChanged += new System.EventHandler(this.ValidateEntry);
             // 
             // categoryNameInput
             // 
             this.categoryNameInput.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.categoryNameInput.Animated = true;
+            this.categoryNameInput.BackColor = System.Drawing.Color.Transparent;
             this.categoryNameInput.BorderRadius = 6;
             this.categoryNameInput.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.categoryNameInput.DefaultText = "";
@@ -342,6 +366,7 @@
             this.categoryNameInput.SelectedText = "";
             this.categoryNameInput.Size = new System.Drawing.Size(124, 29);
             this.categoryNameInput.TabIndex = 7;
+            this.categoryNameInput.TextChanged += new System.EventHandler(this.ValidateEntry);
             // 
             // facilityLabel
             // 
@@ -373,6 +398,7 @@
             // OpenFileDialog
             // 
             this.OpenFileDialog.FileName = "openFileDialog1";
+            this.OpenFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
             // 
             // FacilityForm
             // 
@@ -398,7 +424,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
         private System.Windows.Forms.Label facilityLabel;
         private System.Windows.Forms.Label selectImageLabel;
-        private Guna.UI2.WinForms.Guna2ImageButton ImagePreview;
+        private Guna.UI2.WinForms.Guna2ImageButton imagePreview;
         private Guna.UI2.WinForms.Guna2TextBox facilityNameInput;
         private Guna.UI2.WinForms.Guna2TextBox categoryNameInput;
         private Guna.UI2.WinForms.Guna2Button chooseButton;
@@ -410,5 +436,6 @@
         private Guna.UI2.WinForms.Guna2Button deleteButton;
         private Guna.UI2.WinForms.Guna2DataGridView FacilitiesDataGridView;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.Label errorLabel;
     }
 }

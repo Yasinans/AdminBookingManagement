@@ -16,24 +16,44 @@ namespace AdminBookingManagement
         public UserForm()
         {
             InitializeComponent();
-            RefreshData();
         }
 
-        public void Show()
+        public void RefreshData()
         {
-            base.Show();
-            RefreshData();
-        }
-
-        private void RefreshData()
-        {
+            AdminBookingManagement.UserMV.LoadUsers();
             UsersDataGridView.DataSource = null;
             UsersDataGridView.DataSource = AdminBookingManagement.UserMV.Users;
             usernameInput.Text = "";
             passwordInput.Text = "";
+            if (UsersDataGridView.ColumnCount > 0)
+            {
+                UsersDataGridView.Columns.RemoveAt(UsersDataGridView.ColumnCount - 1);
+            }
+            UsersDataGridView.ClearSelection();
         }
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void ValidateEntry(object sender, EventArgs e)
+        {
+            if (AdminBookingManagement.UserMV.Users.Find(a => a.Username.ToLower().Equals(usernameInput.Text.ToLower())) != null)
+            {
+                errorLabel.Visible = true;
+                addButton.Enabled = false;
+                if (UsersDataGridView.SelectedRows.Count >= 1
+                    && !((string)UsersDataGridView.SelectedRows[0].Cells[1].Value).ToLower().Equals(usernameInput.Text.ToLower()))
+                {
+                    updateButton.Enabled = false;
+                }
+                return;
+            }
+            errorLabel.Visible = false;
+            if (usernameInput.Text.Equals("")) { addButton.Enabled = false; updateButton.Enabled = false; return; }
+            if (passwordInput.Text.Length <= 0) { addButton.Enabled = false; updateButton.Enabled = false; return; }
+            //for update
+            if (UsersDataGridView.SelectedRows.Count <= 0) updateButton.Enabled = false;
+            else updateButton.Enabled = true;
+            addButton.Enabled = true;
+        }
+        private void AddButton_Click(object sender, EventArgs e)
         {
             if(AdminBookingManagement.UserMV.Users.FindAll(user=>user.Username.Equals(usernameInput.Text)).Count > 0)
             {
@@ -46,7 +66,7 @@ namespace AdminBookingManagement
             RefreshData();
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
             if (UsersDataGridView.SelectedRows.Count <= 0)
             {
@@ -56,7 +76,7 @@ namespace AdminBookingManagement
             RefreshData();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (UsersDataGridView.SelectedRows.Count <= 0)
             {
@@ -64,6 +84,13 @@ namespace AdminBookingManagement
             }
             AdminBookingManagement.UserMV.DeleteUserById((int)UsersDataGridView.SelectedRows[0].Cells[0].Value);
             RefreshData();
+        }
+
+        private void UsersDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (UsersDataGridView.SelectedRows.Count <= 0) return;
+            usernameInput.Text = (string) UsersDataGridView.SelectedRows[0].Cells[1].Value;
+            updateButton.Enabled = true;
         }
     }
 }

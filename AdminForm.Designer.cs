@@ -30,19 +30,19 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.userLabel = new System.Windows.Forms.Label();
-            this.adminTitle = new System.Windows.Forms.Label();
+            this.AdminTitle = new System.Windows.Forms.Label();
             this.LogOutButton = new Guna.UI2.WinForms.Guna2Button();
             this.AdminTabControl = new Guna.UI2.WinForms.Guna2TabControl();
             this.DashboardForm = new DashboardForm();
             this.DashboardPanel = new System.Windows.Forms.TabPage();
             this.LoginPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.loginForm1 = new LoginForm();
+            this.LoginForm = new LoginForm();
             this.BookingPanel = new System.Windows.Forms.TabPage();
             this.BookingForm = new BookingForm();
             this.FacilityPanel = new System.Windows.Forms.TabPage();
-            this.facilityForm = new FacilityForm();
+            this.FacilityForm = new FacilityForm();
             this.MiscellaneousPanel = new System.Windows.Forms.TabPage();
-            this.miscellaneousForm1 = new MiscellaneousForm();
+            this.MiscellaneousForm = new MiscellaneousForm();
             this.UserPanel = new System.Windows.Forms.TabPage();
             this.UserForm = new UserForm();
             this.tableLayoutPanel1.SuspendLayout();
@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.343868F));
             this.tableLayoutPanel1.Controls.Add(this.userLabel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.adminTitle, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AdminTitle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.LogOutButton, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -88,16 +88,16 @@
             // 
             // adminTitle
             // 
-            this.adminTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.adminTitle.AutoSize = true;
-            this.adminTitle.Font = new System.Drawing.Font("Plus Jakarta Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adminTitle.ForeColor = System.Drawing.Color.White;
-            this.adminTitle.Location = new System.Drawing.Point(30, 16);
-            this.adminTitle.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
-            this.adminTitle.Name = "adminTitle";
-            this.adminTitle.Size = new System.Drawing.Size(106, 27);
-            this.adminTitle.TabIndex = 0;
-            this.adminTitle.Text = "Admin Panel";
+            this.AdminTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AdminTitle.AutoSize = true;
+            this.AdminTitle.Font = new System.Drawing.Font("Plus Jakarta Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminTitle.ForeColor = System.Drawing.Color.White;
+            this.AdminTitle.Location = new System.Drawing.Point(30, 16);
+            this.AdminTitle.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
+            this.AdminTitle.Name = "adminTitle";
+            this.AdminTitle.Size = new System.Drawing.Size(106, 27);
+            this.AdminTitle.TabIndex = 0;
+            this.AdminTitle.Text = "Admin Panel";
             // 
             // LogOutButton
             // 
@@ -176,7 +176,7 @@
             this.LoginPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.87381F));
             this.LoginPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.25239F));
             this.LoginPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.87381F));
-            this.LoginPanel.Controls.Add(this.loginForm1, 1, 1);
+            this.LoginPanel.Controls.Add(this.LoginForm, 1, 1);
             this.LoginPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LoginPanel.Location = new System.Drawing.Point(3, 3);
             this.LoginPanel.Name = "LoginPanel";
@@ -189,14 +189,14 @@
             // 
             // loginForm1
             // 
-            this.loginForm1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LoginForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginForm1.BackColor = System.Drawing.Color.Transparent;
-            this.loginForm1.Location = new System.Drawing.Point(223, 42);
-            this.loginForm1.Name = "loginForm1";
-            this.loginForm1.Size = new System.Drawing.Size(439, 300);
-            this.loginForm1.TabIndex = 1;
+            this.LoginForm.BackColor = System.Drawing.Color.Transparent;
+            this.LoginForm.Location = new System.Drawing.Point(223, 42);
+            this.LoginForm.Name = "loginForm1";
+            this.LoginForm.Size = new System.Drawing.Size(439, 300);
+            this.LoginForm.TabIndex = 1;
             // 
             // BookingPanel
             // 
@@ -220,7 +220,7 @@
             // FacilityPanel
             // 
             this.FacilityPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(199)))), ((int)(((byte)(199)))));
-            this.FacilityPanel.Controls.Add(this.facilityForm);
+            this.FacilityPanel.Controls.Add(this.FacilityForm);
             this.FacilityPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.FacilityPanel.Location = new System.Drawing.Point(84, 4);
             this.FacilityPanel.Name = "FacilityPanel";
@@ -231,19 +231,19 @@
             // 
             // facilityForm
             // 
-            this.facilityForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.facilityForm.Location = new System.Drawing.Point(3, 3);
-            this.facilityForm.Name = "facilityForm";
-            this.facilityForm.Size = new System.Drawing.Size(887, 425);
-            this.facilityForm.TabIndex = 0;
+            this.FacilityForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FacilityForm.Location = new System.Drawing.Point(3, 3);
+            this.FacilityForm.Name = "facilityForm";
+            this.FacilityForm.Size = new System.Drawing.Size(887, 425);
+            this.FacilityForm.TabIndex = 0;
             // 
             // MiscellaneousPanel
             // 
             this.MiscellaneousPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(199)))), ((int)(((byte)(199)))));
-            this.MiscellaneousPanel.Controls.Add(this.miscellaneousForm1);
+            this.MiscellaneousPanel.Controls.Add(this.MiscellaneousForm);
             this.MiscellaneousPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.MiscellaneousPanel.Location = new System.Drawing.Point(84, 4);
-            this.MiscellaneousPanel.Name = "MiscellaneousPanel";
+            this.MiscellaneousPanel.Name = "Miscellaneous Panel";
             this.MiscellaneousPanel.Padding = new System.Windows.Forms.Padding(3);
             this.MiscellaneousPanel.Size = new System.Drawing.Size(893, 431);
             this.MiscellaneousPanel.TabIndex = 3;
@@ -251,11 +251,11 @@
             // 
             // miscellaneousForm1
             // 
-            this.miscellaneousForm1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.miscellaneousForm1.Location = new System.Drawing.Point(3, 3);
-            this.miscellaneousForm1.Name = "miscellaneousForm1";
-            this.miscellaneousForm1.Size = new System.Drawing.Size(887, 425);
-            this.miscellaneousForm1.TabIndex = 0;
+            this.MiscellaneousForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MiscellaneousForm.Location = new System.Drawing.Point(3, 3);
+            this.MiscellaneousForm.Name = "miscellaneousForm1";
+            this.MiscellaneousForm.Size = new System.Drawing.Size(887, 425);
+            this.MiscellaneousForm.TabIndex = 0;
             // 
             // UserPanel
             // 
@@ -308,15 +308,15 @@
         private System.Windows.Forms.TabPage BookingPanel;
         private System.Windows.Forms.TabPage FacilityPanel;
         private System.Windows.Forms.TabPage MiscellaneousPanel;
-        private System.Windows.Forms.Label adminTitle;
+        private System.Windows.Forms.Label AdminTitle;
         private System.Windows.Forms.TableLayoutPanel LoginPanel;
-        private LoginForm loginForm1;
+        private LoginForm LoginForm;
         private System.Windows.Forms.Label userLabel;
         private DashboardForm DashboardForm;
         private BookingForm BookingForm;
         private System.Windows.Forms.TabPage UserPanel;
-        private FacilityForm facilityForm;
-        private MiscellaneousForm miscellaneousForm1;
+        private FacilityForm FacilityForm;
+        private MiscellaneousForm MiscellaneousForm;
         private UserForm UserForm;
         private Guna.UI2.WinForms.Guna2Button LogOutButton;
     }

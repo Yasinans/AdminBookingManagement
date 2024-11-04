@@ -290,7 +290,7 @@
             this.resetButton.Size = new System.Drawing.Size(71, 30);
             this.resetButton.TabIndex = 10;
             this.resetButton.Text = "Reset";
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // statusComboBox
             // 

@@ -79,6 +79,7 @@
     <Compile Include="FacilityForm.Designer.cs">
       <DependentUpon>FacilityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageUtil.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
